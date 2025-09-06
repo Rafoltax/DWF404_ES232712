@@ -18,7 +18,7 @@ public class PostRepository {
     }
 
     public List<Post> findAll() {
-        final String QUERY = "from Post p";
+        final String QUERY = "From Post p";
         return sessionFactory
                 .getCurrentSession()
                 .createQuery(QUERY, Post.class)
@@ -32,8 +32,9 @@ public class PostRepository {
     }
 
     @Transactional
-    public void save(final Post post) {
+    public Post save(final Post post) {
         sessionFactory.getCurrentSession().persist(post);
+        return post;
     }
 
     @Transactional

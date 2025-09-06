@@ -25,9 +25,7 @@ public class PostServiceImpl implements PostService {
     @Override
     public PostResponse findById(final Long id) {
         return postMapper.toPostResponse(
-                postRepository.findById(id)
-                        .orElseThrow(() ->
-                                new EntityNotFoundException("Resource not found id " + id)));
+                postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Resource not found id " + id)));
     }
     @Override
     public PostResponse save(final PostRequest postRequest) {
@@ -36,9 +34,7 @@ public class PostServiceImpl implements PostService {
     }
     @Override
     public PostResponse update(final Long id, final PostRequest postRequest) {
-        final Post postToUpdate = postRepository.findById(id)
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Resource not found id " + id));
+        final Post postToUpdate = postRepository.findById(id).orElseThrow(() -> new EntityNotFoundException("Resource not found id " + id));
         postToUpdate.setTitle(postRequest.getTitle());
         postToUpdate.setPostDate(postRequest.getPostDate());
         postRepository.save(postToUpdate);
